@@ -1,4 +1,5 @@
 ﻿<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props')" />
   <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -23,6 +24,7 @@
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <TypeScriptToolsVersion>3.1</TypeScriptToolsVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -43,6 +45,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
@@ -88,19 +96,359 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\assets\css\ajax-loader.gif" />
+    <Content Include="Content\assets\css\animate.min.css" />
+    <Content Include="Content\assets\css\bootstrap.min.css" />
+    <Content Include="Content\assets\css\et-line.css" />
+    <Content Include="Content\assets\css\font-awesome.min.css" />
+    <Content Include="Content\assets\css\fonts\slick.svg" />
+    <Content Include="Content\assets\css\ionicons.min.css" />
+    <Content Include="Content\assets\css\main.css" />
+    <Content Include="Content\assets\css\owl.carousel.min.css" />
+    <Content Include="Content\assets\css\owl.theme.default.min.css" />
+    <Content Include="Content\assets\fonts\et-line.svg" />
+    <Content Include="Content\assets\fonts\fontawesome-webfont.svg" />
+    <Content Include="Content\assets\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\assets\fonts\Linearicons-Free.svg" />
+    <Content Include="Content\assets\img\bg\bg-img.png" />
+    <Content Include="Content\assets\img\bg\inner_cover.png" />
+    <Content Include="Content\assets\img\bg\slider.png" />
+    <Content Include="Content\assets\img\bg\tickets.png" />
+    <Content Include="Content\assets\img\blog\blog1.png" />
+    <Content Include="Content\assets\img\blog\blog2.png" />
+    <Content Include="Content\assets\img\blog\blog3.png" />
+    <Content Include="Content\assets\img\blog\instagram\inst1.png" />
+    <Content Include="Content\assets\img\blog\instagram\inst2.png" />
+    <Content Include="Content\assets\img\blog\instagram\inst3.png" />
+    <Content Include="Content\assets\img\blog\instagram\inst4.png" />
+    <Content Include="Content\assets\img\blog\instagram\inst5.png" />
+    <Content Include="Content\assets\img\blog\instagram\inst6.png" />
+    <Content Include="Content\assets\img\brands\b1.png" />
+    <Content Include="Content\assets\img\brands\b2.png" />
+    <Content Include="Content\assets\img\brands\b3.png" />
+    <Content Include="Content\assets\img\brands\b4.png" />
+    <Content Include="Content\assets\img\brands\b5.png" />
+    <Content Include="Content\assets\img\cleander\c1.png" />
+    <Content Include="Content\assets\img\cleander\c2.png" />
+    <Content Include="Content\assets\img\cleander\c3.png" />
+    <Content Include="Content\assets\img\events\event1.png" />
+    <Content Include="Content\assets\img\events\event2.png" />
+    <Content Include="Content\assets\img\events\event3.png" />
+    <Content Include="Content\assets\img\logo-dark.png" />
+    <Content Include="Content\assets\img\logo.png" />
+    <Content Include="Content\assets\img\speakers\s1.png" />
+    <Content Include="Content\assets\img\speakers\s10.png" />
+    <Content Include="Content\assets\img\speakers\s2.png" />
+    <Content Include="Content\assets\img\speakers\s3.png" />
+    <Content Include="Content\assets\img\speakers\s4.png" />
+    <Content Include="Content\assets\img\speakers\s5.png" />
+    <Content Include="Content\assets\img\speakers\s6.png" />
+    <Content Include="Content\assets\img\speakers\s7.png" />
+    <Content Include="Content\assets\img\speakers\s8.png" />
+    <Content Include="Content\assets\img\speakers\s9.png" />
+    <Content Include="Content\assets\js\bootstrap-progressbar.min.js" />
+    <Content Include="Content\assets\js\bootstrap.min.js" />
+    <Content Include="Content\assets\js\jquery-migrate.js" />
+    <Content Include="Content\assets\js\jquery.countdown.min.js" />
+    <Content Include="Content\assets\js\jquery.counterup.min.js" />
+    <Content Include="Content\assets\js\jquery.min.js" />
+    <Content Include="Content\assets\js\main.js" />
+    <Content Include="Content\assets\js\owl.carousel.min.js" />
+    <Content Include="Content\assets\js\parallax.min.js" />
+    <Content Include="Content\assets\js\popper.js" />
+    <Content Include="Content\assets\js\waypoints.min.js" />
+    <Content Include="Content\assets\js\wow.min.js" />
+    <Content Include="Content\contact.html" />
+    <Content Include="Content\events.html" />
+    <Content Include="Content\gulpfile.js" />
+    <Content Include="Content\index.html" />
+    <Content Include="Content\Loginassets\cssLogin\main.css" />
+    <Content Include="Content\Loginassets\cssLogin\util.css" />
+    <Content Include="Content\Loginassets\fontsLogin\font-awesome-4.7.0\css\font-awesome.css" />
+    <Content Include="Content\Loginassets\fontsLogin\font-awesome-4.7.0\css\font-awesome.min.css" />
+    <Content Include="Content\Loginassets\fontsLogin\font-awesome-4.7.0\fonts\fontawesome-webfont.svg" />
+    <Content Include="Content\Loginassets\fontsLogin\font-awesome-4.7.0\HELP-US-OUT.txt" />
+    <Content Include="Content\Loginassets\fontsLogin\Linearicons-Free-v1.0.0\icon-font.min.css" />
+    <Content Include="Content\Loginassets\fontsLogin\Linearicons-Free-v1.0.0\WebFont\Linearicons-Free.svg" />
+    <Content Include="Content\Loginassets\fontsLogin\montserrat\OFL.txt" />
+    <Content Include="Content\Loginassets\fonts\font-awesome-4.7.0\css\font-awesome.css" />
+    <Content Include="Content\Loginassets\fonts\font-awesome-4.7.0\css\font-awesome.min.css" />
+    <Content Include="Content\Loginassets\fonts\font-awesome-4.7.0\fonts\fontawesome-webfont.svg" />
+    <Content Include="Content\Loginassets\fonts\font-awesome-4.7.0\HELP-US-OUT.txt" />
+    <Content Include="Content\Loginassets\fonts\Linearicons-Free-v1.0.0\icon-font.min.css" />
+    <Content Include="Content\Loginassets\fonts\Linearicons-Free-v1.0.0\WebFont\Linearicons-Free.svg" />
+    <Content Include="Content\Loginassets\fonts\montserrat\OFL.txt" />
+    <Content Include="Content\Loginassets\imagesLogin\bg-01.jpg" />
+    <Content Include="Content\Loginassets\imagesLogin\bg-02.jpg" />
+    <Content Include="Content\Loginassets\imagesLogin\icons\favicon.ico" />
+    <Content Include="Content\Loginassets\jsLogin\main.js" />
+    <Content Include="Content\Loginassets\register\main.css" />
+    <Content Include="Content\Loginassets\vendorLogin\animate\animate.css" />
+    <Content Include="Content\Loginassets\vendorLogin\animsition\css\animsition.css" />
+    <Content Include="Content\Loginassets\vendorLogin\animsition\css\animsition.min.css" />
+    <Content Include="Content\Loginassets\vendorLogin\animsition\js\animsition.js" />
+    <Content Include="Content\Loginassets\vendorLogin\animsition\js\animsition.min.js" />
+    <Content Include="Content\Loginassets\vendorLogin\bootstrap\css\bootstrap-grid.css" />
+    <Content Include="Content\Loginassets\vendorLogin\bootstrap\css\bootstrap-grid.min.css" />
+    <Content Include="Content\Loginassets\vendorLogin\bootstrap\css\bootstrap-reboot.css" />
+    <Content Include="Content\Loginassets\vendorLogin\bootstrap\css\bootstrap-reboot.min.css" />
+    <Content Include="Content\Loginassets\vendorLogin\bootstrap\css\bootstrap.css" />
+    <Content Include="Content\Loginassets\vendorLogin\bootstrap\css\bootstrap.min.css" />
+    <Content Include="Content\Loginassets\vendorLogin\bootstrap\js\bootstrap.js" />
+    <Content Include="Content\Loginassets\vendorLogin\bootstrap\js\bootstrap.min.js" />
+    <Content Include="Content\Loginassets\vendorLogin\bootstrap\js\popper.js" />
+    <Content Include="Content\Loginassets\vendorLogin\bootstrap\js\popper.min.js" />
+    <Content Include="Content\Loginassets\vendorLogin\bootstrap\js\tooltip.js" />
+    <Content Include="Content\Loginassets\vendorLogin\countdowntime\countdowntime.js" />
+    <Content Include="Content\Loginassets\vendorLogin\css-hamburgers\hamburgers.css" />
+    <Content Include="Content\Loginassets\vendorLogin\css-hamburgers\hamburgers.min.css" />
+    <Content Include="Content\Loginassets\vendorLogin\daterangepicker\daterangepicker.css" />
+    <Content Include="Content\Loginassets\vendorLogin\daterangepicker\daterangepicker.js" />
+    <Content Include="Content\Loginassets\vendorLogin\daterangepicker\moment.js" />
+    <Content Include="Content\Loginassets\vendorLogin\daterangepicker\moment.min.js" />
+    <Content Include="Content\Loginassets\vendorLogin\jquery\jquery-3.2.1.min.js" />
+    <Content Include="Content\Loginassets\vendorLogin\perfect-scrollbar\perfect-scrollbar.css" />
+    <Content Include="Content\Loginassets\vendorLogin\perfect-scrollbar\perfect-scrollbar.min.js" />
+    <Content Include="Content\Loginassets\vendorLogin\select2\select2.css" />
+    <Content Include="Content\Loginassets\vendorLogin\select2\select2.js" />
+    <Content Include="Content\Loginassets\vendorLogin\select2\select2.min.css" />
+    <Content Include="Content\Loginassets\vendorLogin\select2\select2.min.js" />
+    <Content Include="Content\news.html" />
+    <Content Include="Content\speakers.html" />
     <Content Include="Global.asax" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\ContactController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\AccessController.cs" />
+    <Compile Include="Controllers\MessageController.cs" />
+    <Compile Include="Controllers\NewsController.cs" />
+    <Compile Include="Controllers\OrganizationController.cs" />
+    <Compile Include="Controllers\OrganizerController.cs" />
+    <Compile Include="Controllers\ProfileController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\LoginModel.cs" />
+    <Compile Include="Models\OrganizationMessageModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
+    <Content Include="Content\assets\css\fonts\slick.eot" />
+    <Content Include="Content\assets\css\fonts\slick.ttf" />
+    <Content Include="Content\assets\css\fonts\slick.woff" />
+    <Content Include="Content\assets\scss\base\_base.scss" />
+    <Content Include="Content\assets\scss\base\_variables.scss" />
+    <Content Include="Content\assets\scss\components\_blog_box.scss" />
+    <Content Include="Content\assets\scss\components\_buttons.scss" />
+    <Content Include="Content\assets\scss\components\_contact.scss" />
+    <Content Include="Content\assets\scss\components\_counter.scss" />
+    <Content Include="Content\assets\scss\components\_cover.scss" />
+    <Content Include="Content\assets\scss\components\_event_box.scss" />
+    <Content Include="Content\assets\scss\components\_icon_boxes.scss" />
+    <Content Include="Content\assets\scss\components\_price_box.scss" />
+    <Content Include="Content\assets\scss\components\_progressbar.scss" />
+    <Content Include="Content\assets\scss\components\_speaker.scss" />
+    <Content Include="Content\assets\scss\components\_tabs.scss" />
+    <Content Include="Content\assets\scss\components\_testimonial.scss" />
+    <Content Include="Content\assets\scss\layout\_footer.scss" />
+    <Content Include="Content\assets\scss\layout\_header.scss" />
+    <Content Include="Content\assets\scss\main.scss" />
+    <Content Include="Content\package.json" />
+    <Content Include="Content\Loginassets\fontsLogin\font-awesome-4.7.0\fonts\fontawesome-webfont.eot" />
+    <Content Include="Content\Loginassets\fontsLogin\font-awesome-4.7.0\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Content\Loginassets\fontsLogin\font-awesome-4.7.0\fonts\fontawesome-webfont.woff" />
+    <Content Include="Content\Loginassets\fontsLogin\font-awesome-4.7.0\fonts\fontawesome-webfont.woff2" />
+    <Content Include="Content\Loginassets\fontsLogin\font-awesome-4.7.0\fonts\FontAwesome.otf" />
+    <Content Include="Content\Loginassets\fontsLogin\font-awesome-4.7.0\less\animated.less" />
+    <Content Include="Content\Loginassets\fontsLogin\font-awesome-4.7.0\less\bordered-pulled.less" />
+    <Content Include="Content\Loginassets\fontsLogin\font-awesome-4.7.0\less\core.less" />
+    <Content Include="Content\Loginassets\fontsLogin\font-awesome-4.7.0\less\fixed-width.less" />
+    <Content Include="Content\Loginassets\fontsLogin\font-awesome-4.7.0\less\font-awesome.less" />
+    <Content Include="Content\Loginassets\fontsLogin\font-awesome-4.7.0\less\icons.less" />
+    <Content Include="Content\Loginassets\fontsLogin\font-awesome-4.7.0\less\larger.less" />
+    <Content Include="Content\Loginassets\fontsLogin\font-awesome-4.7.0\less\list.less" />
+    <Content Include="Content\Loginassets\fontsLogin\font-awesome-4.7.0\less\mixins.less" />
+    <Content Include="Content\Loginassets\fontsLogin\font-awesome-4.7.0\less\path.less" />
+    <Content Include="Content\Loginassets\fontsLogin\font-awesome-4.7.0\less\rotated-flipped.less" />
+    <Content Include="Content\Loginassets\fontsLogin\font-awesome-4.7.0\less\screen-reader.less" />
+    <Content Include="Content\Loginassets\fontsLogin\font-awesome-4.7.0\less\stacked.less" />
+    <Content Include="Content\Loginassets\fontsLogin\font-awesome-4.7.0\less\variables.less" />
+    <Content Include="Content\Loginassets\fontsLogin\font-awesome-4.7.0\scss\font-awesome.scss" />
+    <Content Include="Content\Loginassets\fontsLogin\font-awesome-4.7.0\scss\_animated.scss" />
+    <Content Include="Content\Loginassets\fontsLogin\font-awesome-4.7.0\scss\_bordered-pulled.scss" />
+    <Content Include="Content\Loginassets\fontsLogin\font-awesome-4.7.0\scss\_core.scss" />
+    <Content Include="Content\Loginassets\fontsLogin\font-awesome-4.7.0\scss\_fixed-width.scss" />
+    <Content Include="Content\Loginassets\fontsLogin\font-awesome-4.7.0\scss\_icons.scss" />
+    <Content Include="Content\Loginassets\fontsLogin\font-awesome-4.7.0\scss\_larger.scss" />
+    <Content Include="Content\Loginassets\fontsLogin\font-awesome-4.7.0\scss\_list.scss" />
+    <Content Include="Content\Loginassets\fontsLogin\font-awesome-4.7.0\scss\_mixins.scss" />
+    <Content Include="Content\Loginassets\fontsLogin\font-awesome-4.7.0\scss\_path.scss" />
+    <Content Include="Content\Loginassets\fontsLogin\font-awesome-4.7.0\scss\_rotated-flipped.scss" />
+    <Content Include="Content\Loginassets\fontsLogin\font-awesome-4.7.0\scss\_screen-reader.scss" />
+    <Content Include="Content\Loginassets\fontsLogin\font-awesome-4.7.0\scss\_stacked.scss" />
+    <Content Include="Content\Loginassets\fontsLogin\font-awesome-4.7.0\scss\_variables.scss" />
+    <Content Include="Content\Loginassets\fontsLogin\Linearicons-Free-v1.0.0\WebFont\Linearicons-Free.eot" />
+    <Content Include="Content\Loginassets\fontsLogin\Linearicons-Free-v1.0.0\WebFont\Linearicons-Free.ttf" />
+    <Content Include="Content\Loginassets\fontsLogin\Linearicons-Free-v1.0.0\WebFont\Linearicons-Free.woff" />
+    <Content Include="Content\Loginassets\fontsLogin\Linearicons-Free-v1.0.0\WebFont\Linearicons-Free.woff2" />
+    <Content Include="Content\Loginassets\fontsLogin\montserrat\Montserrat-Black.ttf" />
+    <Content Include="Content\Loginassets\fontsLogin\montserrat\Montserrat-BlackItalic.ttf" />
+    <Content Include="Content\Loginassets\fontsLogin\montserrat\Montserrat-Bold.ttf" />
+    <Content Include="Content\Loginassets\fontsLogin\montserrat\Montserrat-BoldItalic.ttf" />
+    <Content Include="Content\Loginassets\fontsLogin\montserrat\Montserrat-ExtraBold.ttf" />
+    <Content Include="Content\Loginassets\fontsLogin\montserrat\Montserrat-ExtraBoldItalic.ttf" />
+    <Content Include="Content\Loginassets\fontsLogin\montserrat\Montserrat-ExtraLight.ttf" />
+    <Content Include="Content\Loginassets\fontsLogin\montserrat\Montserrat-ExtraLightItalic.ttf" />
+    <Content Include="Content\Loginassets\fontsLogin\montserrat\Montserrat-Italic.ttf" />
+    <Content Include="Content\Loginassets\fontsLogin\montserrat\Montserrat-Light.ttf" />
+    <Content Include="Content\Loginassets\fontsLogin\montserrat\Montserrat-LightItalic.ttf" />
+    <Content Include="Content\Loginassets\fontsLogin\montserrat\Montserrat-Medium.ttf" />
+    <Content Include="Content\Loginassets\fontsLogin\montserrat\Montserrat-MediumItalic.ttf" />
+    <Content Include="Content\Loginassets\fontsLogin\montserrat\Montserrat-Regular.ttf" />
+    <Content Include="Content\Loginassets\fontsLogin\montserrat\Montserrat-SemiBold.ttf" />
+    <Content Include="Content\Loginassets\fontsLogin\montserrat\Montserrat-SemiBoldItalic.ttf" />
+    <Content Include="Content\Loginassets\fontsLogin\montserrat\Montserrat-Thin.ttf" />
+    <Content Include="Content\Loginassets\fontsLogin\montserrat\Montserrat-ThinItalic.ttf" />
+    <Content Include="Content\Loginassets\fontsLogin\poppins\Poppins-Black.ttf" />
+    <Content Include="Content\Loginassets\fontsLogin\poppins\Poppins-BlackItalic.ttf" />
+    <Content Include="Content\Loginassets\fontsLogin\poppins\Poppins-Bold.ttf" />
+    <Content Include="Content\Loginassets\fontsLogin\poppins\Poppins-BoldItalic.ttf" />
+    <Content Include="Content\Loginassets\fontsLogin\poppins\Poppins-ExtraBold.ttf" />
+    <Content Include="Content\Loginassets\fontsLogin\poppins\Poppins-ExtraBoldItalic.ttf" />
+    <Content Include="Content\Loginassets\fontsLogin\poppins\Poppins-ExtraLight.ttf" />
+    <Content Include="Content\Loginassets\fontsLogin\poppins\Poppins-ExtraLightItalic.ttf" />
+    <Content Include="Content\Loginassets\fontsLogin\poppins\Poppins-Italic.ttf" />
+    <Content Include="Content\Loginassets\fontsLogin\poppins\Poppins-Light.ttf" />
+    <Content Include="Content\Loginassets\fontsLogin\poppins\Poppins-LightItalic.ttf" />
+    <Content Include="Content\Loginassets\fontsLogin\poppins\Poppins-Medium.ttf" />
+    <Content Include="Content\Loginassets\fontsLogin\poppins\Poppins-MediumItalic.ttf" />
+    <Content Include="Content\Loginassets\fontsLogin\poppins\Poppins-Regular.ttf" />
+    <Content Include="Content\Loginassets\fontsLogin\poppins\Poppins-SemiBold.ttf" />
+    <Content Include="Content\Loginassets\fontsLogin\poppins\Poppins-SemiBoldItalic.ttf" />
+    <Content Include="Content\Loginassets\fontsLogin\poppins\Poppins-Thin.ttf" />
+    <Content Include="Content\Loginassets\fontsLogin\poppins\Poppins-ThinItalic.ttf" />
+    <Content Include="Content\Loginassets\vendorLogin\bootstrap\css\bootstrap-grid.css.map" />
+    <Content Include="Content\Loginassets\vendorLogin\bootstrap\css\bootstrap-grid.min.css.map" />
+    <Content Include="Content\Loginassets\vendorLogin\bootstrap\css\bootstrap-reboot.css.map" />
+    <Content Include="Content\Loginassets\vendorLogin\bootstrap\css\bootstrap-reboot.min.css.map" />
+    <Content Include="Content\Loginassets\vendorLogin\bootstrap\css\bootstrap.css.map" />
+    <Content Include="Content\Loginassets\vendorLogin\bootstrap\css\bootstrap.min.css.map" />
+    <Content Include="Content\assets\fonts\et-line.eot" />
+    <Content Include="Content\assets\fonts\et-line.ttf" />
+    <Content Include="Content\assets\fonts\et-line.woff" />
+    <Content Include="Content\assets\fonts\fontawesome-webfont.eot" />
+    <Content Include="Content\assets\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Content\assets\fonts\fontawesome-webfont.woff" />
+    <Content Include="Content\assets\fonts\fontawesome-webfont.woff2" />
+    <Content Include="Content\assets\fonts\FontAwesome.otf" />
+    <Content Include="Content\assets\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\assets\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Content\assets\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Content\assets\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="Content\assets\fonts\ionicons.eot" />
+    <Content Include="Content\assets\fonts\ionicons.ttf" />
+    <Content Include="Content\assets\fonts\ionicons.woff" />
+    <Content Include="Content\assets\fonts\Linearicons-Free.eot" />
+    <Content Include="Content\assets\fonts\Linearicons-Free.ttf" />
+    <Content Include="Content\assets\fonts\Linearicons-Free.woff" />
+    <Content Include="Content\assets\fonts\Linearicons-Free.woff2" />
+    <Content Include="Content\Loginassets\fonts\font-awesome-4.7.0\fonts\fontawesome-webfont.eot" />
+    <Content Include="Content\Loginassets\fonts\font-awesome-4.7.0\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Content\Loginassets\fonts\font-awesome-4.7.0\fonts\fontawesome-webfont.woff" />
+    <Content Include="Content\Loginassets\fonts\font-awesome-4.7.0\fonts\fontawesome-webfont.woff2" />
+    <Content Include="Content\Loginassets\fonts\font-awesome-4.7.0\fonts\FontAwesome.otf" />
+    <Content Include="Content\Loginassets\fonts\montserrat\Montserrat-Regular.ttf" />
+    <Content Include="Content\Loginassets\fonts\font-awesome-4.7.0\less\animated.less" />
+    <Content Include="Content\Loginassets\fonts\font-awesome-4.7.0\less\bordered-pulled.less" />
+    <Content Include="Content\Loginassets\fonts\font-awesome-4.7.0\less\core.less" />
+    <Content Include="Content\Loginassets\fonts\font-awesome-4.7.0\less\fixed-width.less" />
+    <Content Include="Content\Loginassets\fonts\font-awesome-4.7.0\less\font-awesome.less" />
+    <Content Include="Content\Loginassets\fonts\font-awesome-4.7.0\less\icons.less" />
+    <Content Include="Content\Loginassets\fonts\font-awesome-4.7.0\less\larger.less" />
+    <Content Include="Content\Loginassets\fonts\font-awesome-4.7.0\less\list.less" />
+    <Content Include="Content\Loginassets\fonts\font-awesome-4.7.0\less\mixins.less" />
+    <Content Include="Content\Loginassets\fonts\font-awesome-4.7.0\less\path.less" />
+    <Content Include="Content\Loginassets\fonts\font-awesome-4.7.0\less\rotated-flipped.less" />
+    <Content Include="Content\Loginassets\fonts\font-awesome-4.7.0\less\screen-reader.less" />
+    <Content Include="Content\Loginassets\fonts\font-awesome-4.7.0\less\stacked.less" />
+    <Content Include="Content\Loginassets\fonts\font-awesome-4.7.0\less\variables.less" />
+    <Content Include="Content\Loginassets\fonts\font-awesome-4.7.0\scss\_animated.scss" />
+    <Content Include="Content\Loginassets\fonts\font-awesome-4.7.0\scss\_bordered-pulled.scss" />
+    <Content Include="Content\Loginassets\fonts\font-awesome-4.7.0\scss\_core.scss" />
+    <Content Include="Content\Loginassets\fonts\font-awesome-4.7.0\scss\_fixed-width.scss" />
+    <Content Include="Content\Loginassets\fonts\font-awesome-4.7.0\scss\_icons.scss" />
+    <Content Include="Content\Loginassets\fonts\font-awesome-4.7.0\scss\_larger.scss" />
+    <Content Include="Content\Loginassets\fonts\font-awesome-4.7.0\scss\_list.scss" />
+    <Content Include="Content\Loginassets\fonts\font-awesome-4.7.0\scss\_mixins.scss" />
+    <Content Include="Content\Loginassets\fonts\font-awesome-4.7.0\scss\_path.scss" />
+    <Content Include="Content\Loginassets\fonts\font-awesome-4.7.0\scss\_rotated-flipped.scss" />
+    <Content Include="Content\Loginassets\fonts\font-awesome-4.7.0\scss\_screen-reader.scss" />
+    <Content Include="Content\Loginassets\fonts\font-awesome-4.7.0\scss\_stacked.scss" />
+    <Content Include="Content\Loginassets\fonts\font-awesome-4.7.0\scss\_variables.scss" />
+    <Content Include="Content\Loginassets\fonts\font-awesome-4.7.0\scss\font-awesome.scss" />
+    <Content Include="Content\Loginassets\fonts\Linearicons-Free-v1.0.0\WebFont\Linearicons-Free.eot" />
+    <Content Include="Content\Loginassets\fonts\Linearicons-Free-v1.0.0\WebFont\Linearicons-Free.ttf" />
+    <Content Include="Content\Loginassets\fonts\Linearicons-Free-v1.0.0\WebFont\Linearicons-Free.woff" />
+    <Content Include="Content\Loginassets\fonts\Linearicons-Free-v1.0.0\WebFont\Linearicons-Free.woff2" />
+    <Content Include="Content\Loginassets\fonts\montserrat\Montserrat-Black.ttf" />
+    <Content Include="Content\Loginassets\fonts\montserrat\Montserrat-BlackItalic.ttf" />
+    <Content Include="Content\Loginassets\fonts\montserrat\Montserrat-Bold.ttf" />
+    <Content Include="Content\Loginassets\fonts\montserrat\Montserrat-BoldItalic.ttf" />
+    <Content Include="Content\Loginassets\fonts\montserrat\Montserrat-ExtraBold.ttf" />
+    <Content Include="Content\Loginassets\fonts\montserrat\Montserrat-ExtraBoldItalic.ttf" />
+    <Content Include="Content\Loginassets\fonts\montserrat\Montserrat-ExtraLight.ttf" />
+    <Content Include="Content\Loginassets\fonts\montserrat\Montserrat-ExtraLightItalic.ttf" />
+    <Content Include="Content\Loginassets\fonts\montserrat\Montserrat-Italic.ttf" />
+    <Content Include="Content\Loginassets\fonts\montserrat\Montserrat-Light.ttf" />
+    <Content Include="Content\Loginassets\fonts\montserrat\Montserrat-LightItalic.ttf" />
+    <Content Include="Content\Loginassets\fonts\montserrat\Montserrat-Medium.ttf" />
+    <Content Include="Content\Loginassets\fonts\montserrat\Montserrat-MediumItalic.ttf" />
+    <Content Include="Content\Loginassets\fonts\montserrat\Montserrat-SemiBold.ttf" />
+    <Content Include="Content\Loginassets\fonts\montserrat\Montserrat-SemiBoldItalic.ttf" />
+    <Content Include="Content\Loginassets\fonts\montserrat\Montserrat-Thin.ttf" />
+    <Content Include="Content\Loginassets\fonts\montserrat\Montserrat-ThinItalic.ttf" />
+    <Content Include="Content\Loginassets\fonts\poppins\Poppins-Black.ttf" />
+    <Content Include="Content\Loginassets\fonts\poppins\Poppins-BlackItalic.ttf" />
+    <Content Include="Content\Loginassets\fonts\poppins\Poppins-Bold.ttf" />
+    <Content Include="Content\Loginassets\fonts\poppins\Poppins-BoldItalic.ttf" />
+    <Content Include="Content\Loginassets\fonts\poppins\Poppins-ExtraBold.ttf" />
+    <Content Include="Content\Loginassets\fonts\poppins\Poppins-ExtraBoldItalic.ttf" />
+    <Content Include="Content\Loginassets\fonts\poppins\Poppins-ExtraLight.ttf" />
+    <Content Include="Content\Loginassets\fonts\poppins\Poppins-ExtraLightItalic.ttf" />
+    <Content Include="Content\Loginassets\fonts\poppins\Poppins-Italic.ttf" />
+    <Content Include="Content\Loginassets\fonts\poppins\Poppins-Light.ttf" />
+    <Content Include="Content\Loginassets\fonts\poppins\Poppins-LightItalic.ttf" />
+    <Content Include="Content\Loginassets\fonts\poppins\Poppins-Medium.ttf" />
+    <Content Include="Content\Loginassets\fonts\poppins\Poppins-MediumItalic.ttf" />
+    <Content Include="Content\Loginassets\fonts\poppins\Poppins-Regular.ttf" />
+    <Content Include="Content\Loginassets\fonts\poppins\Poppins-SemiBold.ttf" />
+    <Content Include="Content\Loginassets\fonts\poppins\Poppins-SemiBoldItalic.ttf" />
+    <Content Include="Content\Loginassets\fonts\poppins\Poppins-Thin.ttf" />
+    <Content Include="Content\Loginassets\fonts\poppins\Poppins-ThinItalic.ttf" />
     <None Include="packages.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Home\homepage.cshtml" />
+    <Content Include="Views\Shared\_LayoutPage1.cshtml" />
+    <Content Include="Views\Shared\PartialViews\PartialHome\_PartialCoverSectionSlider.cshtml" />
+    <Content Include="Views\Shared\PartialViews\PartialHome\_PartialEventInfo.cshtml" />
+    <Content Include="Views\Shared\PartialViews\PartialHome\_PartialEventCountdown.cshtml" />
+    <Content Include="Views\Shared\PartialViews\PartialHome\_PartialOrganizarSection.cshtml" />
+    <Content Include="Views\Shared\PartialViews\PartialAccess\_PartialLoginpage.cshtml" />
+    <Content Include="Views\Access\loginpage.cshtml" />
+    <Content Include="Views\Access\registerpage.cshtml" />
+    <Content Include="Views\Shared\PartialViews\PartialAccess\_PartialRegisterpage.cshtml" />
+    <Content Include="Views\Contact\contactpage.cshtml" />
+    <Content Include="Views\Profile\profilepage.cshtml" />
+    <Content Include="Views\Organizer\organizerpage.cshtml" />
+    <Content Include="Views\Organization\organizationpage.cshtml" />
+    <Content Include="Views\News\newspage.cshtml" />
+    <Content Include="Views\Shared\PartialViews\Organization\_PartialOrganization.cshtml" />
+    <Content Include="Views\Shared\PartialViews\Organization\_PartialOrganizationDetails.cshtml" />
+    <Content Include="Views\Organization\OrganizationDetail.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -110,14 +458,31 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Controllers\" />
-    <Folder Include="Models\" />
+    <Folder Include="Views\Message\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MeetUpEvent.BLL\MeetUpEvent.BLL.csproj">
+      <Project>{44841b4e-aa27-4b50-aa8c-3c1d808df2db}</Project>
+      <Name>MeetUpEvent.BLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MeetUpEvent.DAL\MeetUpEvent.DAL.csproj">
+      <Project>{9440d616-d1dc-489e-b64b-8c60babbb3b9}</Project>
+      <Name>MeetUpEvent.DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MeetUpEvent.Entity\MeetUpEvent.Entity.csproj">
+      <Project>{db7f2b09-e9b8-4360-9aa7-955939de1897}</Project>
+      <Name>MeetUpEvent.Entity</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
   </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets')" />
   <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
   <ProjectExtensions>

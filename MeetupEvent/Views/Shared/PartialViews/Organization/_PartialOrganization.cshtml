@@ -1,0 +1,58 @@
+﻿@using MeetUpEvent.Entity
+@model List<Organization>
+<!--event calender-->
+<br />
+<br />
+<br />
+<br />
+<section class="pb100">
+    <div class="container">
+        <div class="table-responsive">
+            <table class="event_calender table">
+                <thead class="event_title">
+                    <tr>
+                        <th>
+                            <i class="ion-ios-calendar-outline"></i>
+                            <span>next events calendar</span>
+                        </th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                <img src="@item.Image" alt="event">
+                            </td>
+                            <td class="event_date">
+                                14
+                                <span>February</span>
+                            </td>
+                            <td>
+                                <div class="event_place">
+                                    <h5>@item.OrganizationTitle</h5>
+                                    <h6>@item.ApplicationDate</h6>
+                                    <p>@item.Person.FirstName @item.Person.LastName</p>
+                                </div>
+                            </td>
+                            <td>
+                                <a href="/Organization/OrganizationDetail/@item.OrganizationID" class="btn btn-primary btn-rounded">Detay</a>
+                            </td>
+
+                            <td class="buy_link">
+                                <a href="#">Katıl</a>
+                            </td>
+                        </tr>
+
+                    }
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+<!--event calender end -->

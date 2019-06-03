@@ -1,0 +1,100 @@
+﻿@using MeetUpEvent.BLL
+
+@{PersonBLL personBLL = new PersonBLL();
+    var persons = personBLL.GetAllPerson();
+}
+<!--speaker section-->
+<section class="pb100">
+    <div class="container">
+        <div class="section_title mb50">
+            <h3 class="title">
+                Organizatörler
+            </h3>
+        </div>
+    </div>
+    <div class="row justify-content-center no-gutters">
+        @foreach (var person in persons)
+        {
+            <div class="col-md-3 col-sm-6">
+                <div class="speaker_box">
+                    <div class="speaker_img">
+                        <img src="@person.Photo" alt="@person.FirstName @person.LastName" height="379,8px">
+                        <div class="info_box">
+                            <h5 class="name">@person.FirstName @person.LastName</h5>
+                            <p class="position">@person.Position</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        }
+    </div>
+</section>
+<!--speaker section end -->
+@*<div class="col-md-3 col-sm-6">
+        <div class="speaker_box">
+            <div class="speaker_img">
+                <img src="assets/img/speakers/s3.png" alt="speaker name">
+                <div class="info_box">
+                    <h5 class="name">Carla Banks</h5>
+                    <p class="position">CEO Company</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3 col-sm-6">
+        <div class="speaker_box">
+            <div class="speaker_img">
+                <img src="assets/img/speakers/s4.png" alt="speaker name">
+                <div class="info_box">
+                    <h5 class="name">William Smith</h5>
+                    <p class="position">CEO Company</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3 col-sm-6">
+        <div class="speaker_box">
+            <div class="speaker_img">
+                <img src="assets/img/speakers/s5.png" alt="speaker name">
+                <div class="info_box">
+                    <h5 class="name">Jessica Black</h5>
+                    <p class="position">CEO Company</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3 col-sm-6">
+        <div class="speaker_box">
+            <div class="speaker_img">
+                <img src="assets/img/speakers/s6.png" alt="speaker name">
+                <div class="info_box">
+                    <h5 class="name">Patricia Stone</h5>
+                    <p class="position">CEO Company</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3 col-sm-6">
+        <div class="speaker_box">
+            <div class="speaker_img">
+                <img src="assets/img/speakers/s7.png" alt="speaker name">
+                <div class="info_box">
+                    <h5 class="name">Duncan Stan</h5>
+                    <p class="position">CEO Company</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3 col-sm-6">
+        <div class="speaker_box">
+            <div class="speaker_img">
+                <img src="assets/img/speakers/s8.png" alt="speaker name">
+                <div class="info_box">
+                    <h5 class="name">Patricia Stone</h5>
+                    <p class="position">CEO Company</p>
+                </div>
+            </div>
+        </div>
+    </div>*@

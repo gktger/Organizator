@@ -1,0 +1,98 @@
+﻿@using MeetupEvent.Models
+@model OrganizationMessageModel
+
+<section class="inner_cover parallax-window" data-parallax="scroll" data-image-src="@Model.Organization.Image">
+    <div class="overlay_dark"></div>
+    <div class="container">
+        <div class="row justify-content-center align-items-center">
+            <div class="col-12">
+                <div class="inner_cover_content">
+                    <h3>@Model.Organization.Category.CategoryName</h3>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</section>
+<!--page title section end-->
+<!--events section -->
+<section class="pt100 pb100">
+    <div class="container">
+        <div class="row justify-content-center">
+            <!--blog section start -->
+            <div class="col-12 col-md-8">
+                <div class="blog_card">
+                    <div class="blog_box_data">
+                        <span class="blog_date">
+                            @Model.Organization.ApplicationDate
+                        </span>
+                        <div class="blog_meta">
+                            <span><a href="#">@Model.Organization.Person.FirstName @Model.Organization.Person.LastName</a></span>  | <span><a href="#">@*katıaln sayısı*@</a></span> / <span><a href="#">@Model.Organization.Quota </a></span>
+                        </div>
+                        <h5>
+                            @Model.Organization.OrganizationTitle
+                        </h5>
+                        <p class="blog_word">
+                            @Model.Organization.Explanation
+                        </p>
+                        <div class=" text-md-right text-center">
+                            <a href="#" class="btn btn-primary btn-rounded mt30" data-toggle="modal" data-target="#Message">İletişime Geç</a>
+                            <a href="#" class="btn btn-primary btn-rounded mt30">Katıl</a>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <!--blog section end-->
+            <!--sidebar section -->
+            <div class="col-12 col-md-4">
+                <div class="sidebar">
+
+                    <div class="widget widget_categories">
+                        <h4 class="widget-title">
+                            Categories
+                        </h4>
+                        <ul>
+                            <li><a href="#">Uncategorized</a></li>
+                            <li><a href="#">Usefull Information</a></li>
+                            <li><a href="#">Events</a></li>
+                            <li><a href="#">Business</a></li>
+                            <li><a href="#">Marketing</a></li>
+                            <li><a href="#">Conference & Press</a></li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+            <!--sidebar section end -->
+
+        </div>
+    </div>
+</section>
+<!--event section end -->
+<!-- Modal -->
+@using (Html.BeginForm("SendMessage", "Message", FormMethod.Post))
+{
+    <div class="modal fade" id="Message" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Mesaj Gönder</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    @Html.HiddenFor(x=>x.Organization.PersonID)
+                    @Html.TextBoxFor(x => x.Organization.Person.Email, new { @class = "form-control", placeholder = "Mesajınız...", disabled = "disable" })
+                    @Html.TextAreaFor(x => x.Message.MessageText, new { @class = "form-control", placeholder = "Mesajınız..." })
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    <input type="submit" class="btn btn-primary" value="Gönder" />
+                </div>
+            </div>
+        </div>
+    </div>
+}

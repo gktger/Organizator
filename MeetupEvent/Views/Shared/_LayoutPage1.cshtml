@@ -1,0 +1,289 @@
+﻿@using MeetUpEvent.Entity
+@{
+    Person person = (Person)Session["Person"];
+}
+<!DOCTYPE html>
+
+<html lang="tr">
+<head>
+    <!-- ========== Meta Tags ========== -->
+    <meta charset="UTF-8">
+    <meta name="description" content="Evento -Event Html Template">
+    <meta name="keywords" content="Evento , Event , Html, Template">
+    <meta name="author" content="ColorLib">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <!-- ========== Title ========== -->
+    <title> Evento - Event Html Template</title>
+    <!-- ========== Favicon Ico ========== -->
+    <!--<link rel="icon" href="fav.ico">-->
+    <!-- ========== STYLESHEETS ========== -->
+    <!-- Bootstrap CSS -->
+    <link href="~/Content/assets/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Fonts Icon CSS -->
+    <link href="~/Content/assets/css/font-awesome.min.css" rel="stylesheet">
+    <link href="~/Content/assets/css/et-line.css" rel="stylesheet">
+    <link href="~/Content/assets/css/ionicons.min.css" rel="stylesheet">
+    <!-- Carousel CSS -->
+    <link href="~/Content/assets/css/owl.carousel.min.css" rel="stylesheet">
+    <link href="~/Content/assets/css/owl.theme.default.min.css" rel="stylesheet">
+    <!-- Animate CSS -->
+    <link rel="stylesheet" href="~/Content/assets/css/animate.min.css">
+    <!-- Custom styles for this template -->
+    <link href="~/Content/assets/css/main.css" rel="stylesheet">
+    <!-- jquery -->
+    <script src="~/Content/assets/js/jquery.min.js"></script>
+
+    <!--===============================================================================================-->
+    <link rel="icon" type="image/png" href="../Content/Loginassets/imagesLogin/icons/favicon.ico" />
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="../Content/Loginassets/vendorLogin/animsition/css/animsition.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="../Content/Loginassets/vendorLogin/css-hamburgers/hamburgers.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="../Content/Loginassets/vendorLogin/select2/select2.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="../Content/Loginassets/vendorLogin/daterangepicker/daterangepicker.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="../Content/Loginassets/cssLogin/util.css">
+    <!--===============================================================================================-->
+
+</head>
+<body>
+    <div class="loader">
+        <div class="loader-outter"></div>
+        <div class="loader-inner"></div>
+    </div>
+    <!--header start here -->
+    <header class="header navbar fixed-top navbar-expand-md">
+        <div class="container">
+            <a class="navbar-brand logo" href="../">
+                <img src="~/Content/assets/img/logo.png" alt="Evento" />
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#headernav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="lnr lnr-text-align-right"></span>
+            </button>
+            <div class="collapse navbar-collapse flex-sm-row-reverse" id="headernav">
+                <ul class=" nav navbar-nav menu">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="~/Home/homepage">Ana Sayfa</a>
+                    </li>
+
+                    @if (Session["Person"] == null)
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link " href="~/Contact/contactpage">İletişim</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link " href="~/Access/loginpage">GİRİŞ YAP</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="~/Access/registerpage">KAYDOL</a>
+                        </li>
+                    }
+                    else
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link " href="~/Organizer/organizerpage">Organizatörler</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link " href="~/Organization/organizationpage">Etkinlikler</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link " href="~/News/newspage">Haber</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link " href="~/Contact/contactpage">İletişim</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link " href="~/Profile/profilepage">@person.FirstName @person.LastName</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link " href="~/Access/logoutpage">Çıkış</a>
+                        </li>
+
+                    }
+                    <li class="search_btn">
+                        <a href="#">
+                            <i class="ion-ios-search"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </header>
+    <!--header end here-->
+    <div>
+        @RenderBody()
+    </div>
+    <!--footer start -->
+    <footer>
+        <div class="container">
+            <div class="row justify-content-center">
+
+                <div class="col-md-4 col-12">
+                    <div class="footer_box">
+                        <div class="footer_header">
+                            <div class="footer_logo">
+                                <img src="~/Content/assets/img/logo.png" alt="evento">
+                            </div>
+                        </div>
+                        <div class="footer_box_body">
+                            <p>
+                                <ul>
+                                    <li>Arkadaşlarınızla yapıcağınız eğlenceli organizasyonlarınızı</li>
+                                    <li>Şirket Organizasyonlarınızı</li>
+                                    <li>Konferanslarınızı</li>
+                                    <li>Sıkıcı Toplantılarınızı</li>
+                                    <li>Özel günlerinizi</li>
+                                </ul>
+                                Kısacası aklınıza gelen her türlü etkinliğinizi yönetebileceğiniz bir site. Sosyal ağlardan bizi takip edebilir etkinliklerinizi paylaşa bilirsiniz.
+                            </p>
+                            <ul class="footer_social">
+                                <li>
+                                    <a href="#"><i class="ion-social-pinterest"></i></a>
+                                </li>
+                                <li>
+                                    <a href="#"><i class="ion-social-facebook"></i></a>
+                                </li>
+                                <li>
+                                    <a href="#"><i class="ion-social-twitter"></i></a>
+                                </li>
+                                <li>
+                                    <a href="#"><i class="ion-social-dribbble"></i></a>
+                                </li>
+                                <li>
+                                    <a href="#"><i class="ion-social-instagram"></i></a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 col-md-4">
+                    <div class="footer_box">
+                        <div class="footer_header">
+                            <h4 class="footer_title">
+                                instagram
+                            </h4>
+                        </div>
+                        <div class="footer_box_body">
+                            <ul class="instagram_list">
+                                <li>
+                                    <a href="#">
+                                        <img src="~/Content/assets/img/cleander/c1.png" alt="instagram">
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <img src="~/Content/assets/img/cleander/c2.png" alt="instagram">
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <img src="~/Content/assets/img/cleander/c3.png" alt="instagram">
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <img src="~/Content/assets/img/cleander/c3.png" alt="instagram">
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <img src="~/Content/assets/img/cleander/c2.png" alt="instagram">
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <img src="~/Content/assets/img/cleander/c1.png" alt="instagram">
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 col-md-4">
+                    <div class="footer_box">
+                        <div class="footer_header">
+                            <h4 class="footer_title">
+                                Haber Bültenimize Abone Ol
+                            </h4>
+                        </div>
+                        <div class="footer_box_body">
+                            <div class="newsletter_form">
+                                <input type="email" class="form-control" placeholder="E-mail Adresi">
+                                <button class="btn btn-rounded btn-block btn-primary">Abone Ol</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <div class="copyright_footer">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-6 col-12">
+                    <p>
+                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                        Copyright &copy;
+                        <script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                    </p>
+                </div>
+                <div class="col-12 col-md-6 ">
+                    <ul class="footer_menu">
+                        <li>
+                            <a href="#">Ana Sayfa</a>
+                        </li>
+                        <li>
+                            <a href="#">Organizatörler</a>
+                        </li>
+                        <li>
+                            <a href="#">Etkinlikler</a>
+                        </li>
+                        <li>
+                            <a href="#">Haberler</a>
+                        </li>
+                        <li>
+                            <a href="#">İletişim</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--footer end -->
+    <!-- bootstrap -->
+    <script src="~/Content/assets/js/popper.js"></script>
+    <script src="~/Content/assets/js/bootstrap.min.js"></script>
+    <script src="~/Content/assets/js/waypoints.min.js"></script>
+    <!--slick carousel -->
+    <script src="~/Content/assets/js/owl.carousel.min.js"></script>
+    <!--parallax -->
+    <script src="~/Content/assets/js/parallax.min.js"></script>
+    <!--Counter up -->
+    <script src="~/Content/assets/js/jquery.counterup.min.js"></script>
+    <!--Counter down -->
+    <script src="~/Content/assets/js/jquery.countdown.min.js"></script>
+    <!-- WOW JS -->
+    <script src="~/Content/assets/js/wow.min.js"></script>
+    <!-- Custom js -->
+    <script src="~/Content/assets/js/main.js"></script>
+    <!--===============================================================================================-->
+    <!--===============================================================================================-->
+    <script src="../Content/Loginassets/vendorLogin/animsition/js/animsition.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="../Content/Loginassets/vendorLogin/select2/select2.min.js"></script>
+
+
+    <!--===============================================================================================-->
+    <!--===============================================================================================-->
+    <!--===============================================================================================-->
+    <!--===============================================================================================-->
+
+
+</body>
+</html>

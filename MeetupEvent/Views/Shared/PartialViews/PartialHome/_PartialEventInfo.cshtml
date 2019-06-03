@@ -1,0 +1,63 @@
+﻿@model List<MeetUpEvent.Entity.Organization>
+<!--event info -->
+<section class="pt100 pb100">
+    <div class="container">
+        <div class="row justify-content-center">
+            @foreach (var organizations in Model)
+            {
+                <div class="col-6 col-md-3  ">
+                    <div class="icon_box_two">
+                        <i class="ion-ios-calendar-outline"></i>
+                        <div class="content">
+                            <h5 class="box_title">Tarih</h5>
+                            <p>
+                                @organizations.ApplicationDate.ToShortDateString()
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3  ">
+                    <div class="icon_box_two">
+                        <i class="ion-ios-location-outline"></i>
+                        <div class="content">
+                            <h5 class="box_title">
+                                Yer
+                            </h5>
+                            <p>
+                                @organizations.City
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3  ">
+                    <div class="icon_box_two">
+                        <i class="ion-ios-person-outline"></i>
+                        <div class="content">
+                            <h5 class="box_title">
+                                Organizatör
+                            </h5>
+                            <p>
+                                @organizations.Person.FirstName @organizations.Person.LastName
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3  ">
+                    <div class="icon_box_two">
+                        <i class="ion-ios-pricetag-outline"></i>
+                        <div class="content">
+                            <h5 class="box_title">
+                                Kontenjan
+                            </h5>
+                            <p>
+                                @organizations.Quota
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+            }
+        </div>
+    </div>
+</section>
+<!--event info end -->
